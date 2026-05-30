@@ -1,0 +1,421 @@
+/**
+ * Unified SaaS dashboard theme — bridges legacy class names to design tokens.
+ * Import globally via main.jsx.
+ */
+
+/* --- Shared tokens --- */
+:root {
+  --ds-radius: 16px;
+  --ds-radius-sm: 12px;
+  --ds-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+  --ds-shadow-hover: 0 16px 34px rgba(15, 23, 42, 0.1);
+  --ds-border: 1px solid #e2e8f0;
+  --ds-gap: 24px;
+  --ds-grid-gap: 16px;
+  --ds-card-padding: 20px;
+  --ds-text: #0f172a;
+  --ds-muted: #64748b;
+  --ds-accent: #4f46e5;
+}
+
+/* --- Unified dashboard shells --- */
+.student-dashboard-unified,
+.admin-dashboard-unified,
+.org-dashboard-unified {
+  min-height: auto;
+  background: transparent;
+  display: grid;
+  gap: var(--ds-gap);
+}
+
+.student-dashboard-unified .dashboard-content,
+.admin-dashboard-unified .admin-content,
+.org-dashboard-unified .org-content {
+  display: grid;
+  gap: var(--ds-gap);
+}
+
+.student-dashboard-unified .sidebar,
+.admin-dashboard-unified .admin-sidebar,
+.org-dashboard-unified .org-sidebar {
+  display: none;
+}
+
+.student-dashboard-unified .main-content,
+.admin-dashboard-unified .admin-main,
+.org-dashboard-unified .org-main {
+  display: grid;
+  gap: var(--ds-gap);
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* --- Standard card surfaces --- */
+.internship-card,
+.pending-card,
+.application-item,
+.application-card,
+.community-feed-item,
+.community-feed-preview,
+.recommendations-section,
+.activity-section,
+.recent-section,
+.organizations-table,
+.students-section,
+.internships-section,
+.metric-card:not(.ui-stat-card),
+.stat-card:not(.ui-stat-card),
+.feature-card,
+.portfolio-card,
+.tab-content,
+.application-card.card,
+.internship-detail .description-section,
+.internship-detail .requirements-section,
+.internship-detail .skills-section,
+.internship-detail .benefits-section,
+.internship-detail .header-section,
+.internship-detail .application-card {
+  background: #ffffff;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius);
+  padding: var(--ds-card-padding);
+  box-shadow: var(--ds-shadow);
+}
+
+.internship-card,
+.pending-card,
+.recommendation-card,
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.internship-card:hover,
+.pending-card:hover,
+.recommendation-card:hover,
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ds-shadow-hover);
+}
+
+/* --- Grids --- */
+.internships-grid,
+.recommendations-grid,
+.metrics-grid,
+.stats-grid,
+.details-grid {
+  display: grid;
+  gap: var(--ds-grid-gap);
+}
+
+.internships-grid,
+.recommendations-grid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.metrics-grid,
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* --- Summary / status bar --- */
+.dashboard-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius);
+  box-shadow: var(--ds-shadow);
+  font-size: 0.875rem;
+  color: var(--ds-muted);
+  font-weight: 600;
+}
+
+.live-badge,
+.ds-section-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 999px;
+}
+
+/* --- Legacy section headers → design system --- */
+.content-header,
+.recommendations-header,
+.section-header:not(.ds-section-header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  margin-bottom: 0;
+  background: #ffffff;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius);
+  box-shadow: var(--ds-shadow);
+}
+
+.content-header h2,
+.recommendations-header h3,
+.section-header:not(.ds-section-header) h2,
+.section-header:not(.ds-section-header) h3 {
+  margin: 0;
+  color: var(--ds-text);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* --- Buttons (global bridge) --- */
+.btn-primary,
+.apply-btn,
+.saas-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--ds-accent);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.22);
+}
+
+.btn-primary:hover,
+.apply-btn:hover,
+.saas-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.28);
+}
+
+.btn-outline,
+.btn-secondary,
+.saas-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid #c7d2fe;
+  background: #ffffff;
+  color: var(--ds-accent);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-outline:hover,
+.btn-secondary:hover,
+.saas-btn-outline:hover {
+  background: #eef2ff;
+}
+
+.btn-sm {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 0.85rem;
+}
+
+.btn-lg {
+  min-height: 44px;
+  padding: 0 20px;
+}
+
+/* --- Form inputs --- */
+.search-bar input,
+.ds-input,
+.period-select,
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: var(--ds-border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--ds-text);
+  font-size: 0.9rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: var(--ds-border);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.search-bar input {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* --- Remove landing-style gradients from dashboards --- */
+.admin-dashboard:not(.admin-dashboard-unified) {
+  background: #f8fafc;
+}
+
+.student-dashboard:not(.student-dashboard-unified) {
+  background: #f8fafc;
+}
+
+.org-dashboard:not(.org-dashboard-unified) {
+  background: #f8fafc;
+}
+
+/* --- Unified mode: neutralize legacy gradients --- */
+.admin-dashboard-unified .admin-sidebar,
+.admin-dashboard-unified .org-sidebar,
+.student-dashboard-unified .sidebar,
+.org-dashboard-unified .org-sidebar {
+  background: #ffffff !important;
+}
+
+.admin-dashboard-unified .nav-item.active,
+.org-dashboard-unified .nav-item.active,
+.student-dashboard-unified .nav-item.active {
+  background: #eef2ff !important;
+  color: var(--ds-accent) !important;
+}
+
+.admin-dashboard-unified .pending-card:hover,
+.org-dashboard-unified .internship-card:hover {
+  transform: none;
+}
+
+.timeline-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.sidebar-app-item {
+  display: grid;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sidebar-app-item:last-child {
+  border-bottom: none;
+}
+
+.ds-grid-span-full {
+  grid-column: 1 / -1;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 32px 20px;
+}
+
+.applications-list {
+  display: grid;
+  gap: var(--ds-grid-gap);
+}
+
+.application-timeline-item .timeline-content {
+  flex: 1;
+  display: grid;
+  gap: 12px;
+}
+
+/* --- Unified dashboards: full-width desktop layout --- */
+.admin-dashboard-unified .admin-content,
+.org-dashboard-unified .org-content {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.admin-dashboard-unified .admin-main,
+.org-dashboard-unified .org-main {
+  width: 100%;
+  max-width: none;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.admin-dashboard-unified .overview-section,
+.admin-dashboard-unified .analytics-section,
+.admin-dashboard-unified .students-section,
+.admin-dashboard-unified .internships-section,
+.admin-dashboard-unified .utilities-section,
+.org-dashboard-unified .overview-section,
+.org-dashboard-unified .internships-section,
+.org-dashboard-unified .applications-section,
+.org-dashboard-unified .profile-section {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.admin-dashboard-unified .analytics-grid,
+.admin-dashboard-unified .metrics-grid,
+.admin-dashboard-unified .internship-stats,
+.org-dashboard-unified .stats-grid,
+.org-dashboard-unified .internships-grid {
+  width: 100%;
+}
+
+.admin-dashboard-unified .analytics-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .admin-dashboard-unified .analytics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-dashboard-unified .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saas-content.dashboard-container {
+    padding: 0;
+  }
+}
+
+/* --- Public internships catalog --- */
+.internships-page {
+  width: 100%;
+}
+
+.internships-page .internships-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.internships-page .search-filters {
+  width: 100%;
+}

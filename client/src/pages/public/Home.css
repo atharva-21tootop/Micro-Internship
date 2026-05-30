@@ -1,0 +1,46 @@
+.home-page {
+  padding: 24px 0 48px;
+  background: transparent;
+}
+
+.home-section {
+  display: grid;
+  gap: 16px;
+}
+
+.home-feature-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.home-feature-desc {
+  margin: 8px 0 0;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.home-cta {
+  display: grid;
+  gap: 16px;
+  text-align: center;
+}
+
+.home-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .home-cta-actions {
+    flex-direction: column;
+  }
+}

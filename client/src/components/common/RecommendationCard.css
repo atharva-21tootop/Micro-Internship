@@ -1,0 +1,142 @@
+/* Recommendation Card — unified with design system */
+
+.recommendation-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.recommendation-card .card-header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.match-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: #4f46e5;
+}
+
+.recommendation-card.match-excellent .match-badge { background: #059669; }
+.recommendation-card.match-good .match-badge { background: #2563eb; }
+.recommendation-card.match-fair .match-badge { background: #d97706; }
+.recommendation-card.match-low .match-badge { background: #dc2626; }
+
+.match-percentage {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.match-label {
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+.recommendation-card .card-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.match-reason {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.company-name {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.recommendation-card .card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+  gap: 12px;
+}
+
+.duration {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.recommendation-card .apply-btn {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .recommendation-card .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recommendation-card .apply-btn {
+    width: 100%;
+  }
+}

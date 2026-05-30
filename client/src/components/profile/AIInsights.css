@@ -1,0 +1,252 @@
+.ai-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ai-insights.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #f0f4f8 0%, #f9fafb 100%);
+  border-radius: 0.75rem;
+  border: 2px dashed #e2e8f0;
+}
+
+.empty-icon {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.ai-insights.empty-state h4 {
+  color: #64748b;
+  margin: 0.5rem 0;
+}
+
+.ai-insights.empty-state p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.insight-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.insight-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.insight-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.insight-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #3b82f6;
+}
+
+.insight-header h4 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.insight-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.insight-content p {
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.insight-badge {
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.insight-badge.success {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.specialty-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.badge.frontend {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge.backend {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+.badge.fullstack {
+  background: #d8b4fe;
+  color: #6b21a8;
+}
+
+.interests-text {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.improvement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.improvement-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.improvement-list li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #f59e0b;
+  font-weight: bold;
+}
+
+.insight-tip {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+  color: #92400e;
+  font-size: 0.85rem;
+  border-radius: 0.25rem;
+}
+
+.roles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.role-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  border-left: 3px solid #3b82f6;
+}
+
+.role-name {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.role-match {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  background: white;
+  border-radius: 999px;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.internship-suggest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.internship-suggest-list li {
+  margin-bottom: 0.5rem;
+}
+
+.internship-suggest-list a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.internship-suggest-list a:hover {
+  text-decoration: underline;
+}
+
+.next-steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.next-steps-list li {
+  padding: 0.75rem 0;
+  padding-left: 1.75rem;
+  position: relative;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.next-steps-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-card {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,113 @@
+.skills-insights-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skills-insights-tab .portfolio-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.skills-insights-tab .portfolio-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.skills-insights-tab .portfolio-card-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.skills-insights-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-insights-tab .interests-block {
+  margin-top: 1.25rem;
+}
+
+.skills-insights-tab .interests-block h4 {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.skills-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skills-insights-grid .insight-card {
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background: #f8fafc;
+}
+
+.skills-insights-grid .insight-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.skills-insights-grid .insight-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-insights-grid .insight-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.skills-insights-grid .insight-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+}
+
+.skills-insights-grid .growth-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #475569;
+}
+
+.skills-insights-grid .roles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-insights-grid .role-chip {
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.skills-insights-grid .insight-tip {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.skills-insights-tab .empty-hint {
+  color: #64748b;
+  font-size: 0.875rem;
+  margin: 0;
+}

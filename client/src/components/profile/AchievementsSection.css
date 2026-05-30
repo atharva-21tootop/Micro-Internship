@@ -1,0 +1,128 @@
+.achievements-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.achievements-summary {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.achievements-summary .summary-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #3b82f6;
+}
+
+.achievements-summary .summary-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.achievements-summary .summary-label {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.achievement-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.achievement-badge-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+}
+
+.achievement-badge-card.auto {
+  border-left: 3px solid #10b981;
+}
+
+.achievement-badge-card.manual {
+  border-left: 3px solid #3b82f6;
+}
+
+.badge-icon-wrap {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achievement-badge-card.auto .badge-icon-wrap {
+  background: #10b981;
+}
+
+.badge-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.badge-top h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.badge-type {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.badge-type.auto {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-type.manual {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-content p {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.badge-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.badge-points {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.badge-date {
+  color: #94a3b8;
+}
+
+.pending-hint p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}

@@ -1,0 +1,197 @@
+.student-apps-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.student-apps-modal {
+  width: min(100%, 920px);
+  margin: auto;
+  padding: 28px;
+  border-radius: 20px;
+  background: #f8fafc;
+  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.2);
+  display: grid;
+  gap: 20px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.student-apps-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.student-apps-modal-header h2 {
+  margin: 4px 0 0;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.student-apps-sub {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.student-apps-profile .label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.student-apps-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+.student-apps-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.student-apps-skills .muted {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.student-apps-stats {
+  margin: 0;
+}
+
+.student-apps-list {
+  display: grid;
+  gap: 12px;
+}
+
+.student-app-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.student-app-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.student-app-match {
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+.student-app-reason {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #eef2ff;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.student-app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.student-apps-empty {
+  text-align: center;
+  padding: 40px 24px;
+  color: #64748b;
+}
+
+.student-apps-empty svg {
+  margin: 0 auto 12px;
+  color: #94a3b8;
+}
+
+.student-apps-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.student-app-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.student-app-detail {
+  width: min(100%, 480px);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.student-app-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.student-app-detail-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.student-app-detail-list div {
+  display: grid;
+  gap: 4px;
+}
+
+.student-app-detail-list dt {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.student-app-detail-list dd {
+  margin: 0;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .student-apps-modal {
+    padding: 20px 16px;
+  }
+
+  .student-apps-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

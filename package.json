@@ -1,0 +1,43 @@
+{
+  "name": "mitaoe-micro-internship-portal",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "server": "node --env-file=.env server/src/server.js",
+    "server:stop": "powershell -NoProfile -Command \"$p = (Get-NetTCPConnection -LocalPort 5001 -State Listen -EA SilentlyContinue | Select-Object -First 1).OwningProcess; if ($p) { Stop-Process -Id $p -Force; Write-Host ('Stopped process on port 5001 (PID ' + $p + ')') } else { Write-Host 'No server listening on port 5001' }\"",
+    "server:restart": "npm run server:stop && npm run server",
+    "build": "vite build",
+    "lint": "eslint client/src server/src shared scripts --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.7.0",
+    "framer-motion": "^12.40.0",
+    "helmet": "^8.1.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "csv-parser": "^3.2.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.26",
+    "globals": "^17.6.0",
+    "papaparse": "^5.5.3",
+    "vite": "^4.4.5"
+  }
+}

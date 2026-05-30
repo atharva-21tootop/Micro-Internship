@@ -1,0 +1,278 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userData() {
+      return signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data
+        : null;
+    }
+
+    // Prefer custom claims; fall back to Firestore user profile role
+    function role() {
+      return signedIn()
+        ? (request.auth.token.role != null
+            ? request.auth.token.role
+            : (userData() != null ? userData().role : null))
+        : null;
+    }
+
+    function isAdmin() {
+      return role() == 'admin';
+    }
+
+    function isStudent() {
+      return role() == 'student';
+    }
+
+    function isOrganization() {
+      return role() == 'organization' || role() == 'org';
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function validPublicRole(value) {
+      return value in ['student', 'organization'];
+    }
+
+    function canReadInternship() {
+      return resource.data.get('approved', false) == true
+        || (signedIn() && isAdmin())
+        || (signedIn() && isOrganization() && resource.data.orgId == request.auth.uid);
+    }
+
+    function userCreateKeys() {
+      return [
+        'uid',
+        'email',
+        'firstName',
+        'lastName',
+        'fullName',
+        'displayName',
+        'phone',
+        'companyName',
+        'role',
+        'year',
+        'branch',
+        'department',
+        'skills',
+        'interests',
+        'bio',
+        'address',
+        'github',
+        'linkedin',
+        'portfolio',
+        'resumeUrl',
+        'projects',
+        'experience',
+        'photoURL',
+        'authProvider',
+        'createdAt',
+        'updatedAt'
+      ];
+    }
+
+    function userUpdateKeys() {
+      return [
+        'firstName',
+        'lastName',
+        'fullName',
+        'displayName',
+        'phone',
+        'companyName',
+        'year',
+        'branch',
+        'department',
+        'skills',
+        'interests',
+        'bio',
+        'address',
+        'github',
+        'linkedin',
+        'portfolio',
+        'resumeUrl',
+        'projects',
+        'experience',
+        'photoURL',
+        'updatedAt',
+        'lastActivity'
+      ];
+    }
+
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+
+      allow create: if isOwner(userId)
+        && request.resource.data.uid == userId
+        && request.resource.data.email == request.auth.token.email
+        && validPublicRole(request.resource.data.role)
+        && request.resource.data.keys().hasOnly(userCreateKeys())
+        && !('disabled' in request.resource.data)
+        && !('disabledAt' in request.resource.data)
+        && !('adminNotes' in request.resource.data);
+
+      allow update: if isOwner(userId)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(userUpdateKeys())
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.get('disabled', false) == resource.data.get('disabled', false);
+
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /internships/{internshipId} {
+      allow read: if canReadInternship();
+
+      allow create: if isOrganization()
+        && request.resource.data.orgId == request.auth.uid
+        && request.resource.data.approved == false
+        && request.resource.data.status == 'pending';
+
+      allow update: if isOrganization()
+        && resource.data.orgId == request.auth.uid
+        && request.resource.data.orgId == resource.data.orgId
+        && request.resource.data.approved == resource.data.approved
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'title',
+          'company',
+          'description',
+          'requirements',
+          'skills',
+          'category',
+          'duration',
+          'location',
+          'type',
+          'stipend',
+          'perks',
+          'status',
+          'updatedAt'
+        ]);
+
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /applications/{applicationId} {
+      allow read: if signedIn()
+        && (
+          resource.data.studentId == request.auth.uid ||
+          resource.data.orgId == request.auth.uid ||
+          isAdmin()
+        );
+
+      allow create: if isStudent()
+        && request.resource.data.studentId == request.auth.uid
+        && request.resource.data.status == 'pending';
+
+      allow update: if isStudent()
+        && resource.data.studentId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'status',
+          'withdrawn',
+          'withdrawnAt',
+          'updatedAt'
+        ])
+        && request.resource.data.status == 'withdrawn';
+
+      allow update: if isOrganization()
+        && resource.data.orgId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'status',
+          'notes',
+          'reviewedAt',
+          'reviewedBy',
+          'statusUpdatedAt',
+          'updatedAt'
+        ])
+        && request.resource.data.status in ['accepted', 'rejected'];
+
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if signedIn()
+        && (resource.data.userId == request.auth.uid || isAdmin());
+
+      allow create: if isAdmin()
+        || (
+          signedIn()
+          && request.resource.data.userId is string
+          && request.resource.data.keys().hasOnly([
+            'userId',
+            'type',
+            'title',
+            'message',
+            'relatedId',
+            'read',
+            'createdAt'
+          ])
+        );
+
+      allow update: if signedIn()
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'read',
+          'readAt',
+          'deleted',
+          'deletedAt'
+        ]);
+
+      allow delete: if false;
+    }
+
+    match /achievements/{achievementId} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        || (isStudent() && request.resource.data.studentId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    match /achievementTemplates/{templateId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /discussions/{discussionId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.authorId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || resource.data.authorId == request.auth.uid;
+    }
+
+    match /events/{eventId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.organizerId == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || resource.data.organizerId == request.auth.uid;
+    }
+
+    match /groups/{groupId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || resource.data.createdBy == request.auth.uid;
+    }
+
+    match /auditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

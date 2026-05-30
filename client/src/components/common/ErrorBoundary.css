@@ -1,0 +1,143 @@
+/* src/components/ErrorBoundary.css */
+
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.error-container {
+  background: white;
+  border-radius: 12px;
+  padding: 48px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.error-icon {
+  color: #dc2626;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.error-container h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #111827;
+}
+
+.error-container p {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.error-actions {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-actions .btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.error-actions .btn-primary {
+  background: #667eea;
+  color: white;
+  border: none;
+}
+
+.error-actions .btn-primary:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.error-actions .btn-outline {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.error-actions .btn-outline:hover {
+  background: #f3f4f6;
+}
+
+.error-persistent {
+  margin-top: 20px;
+  padding: 12px;
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: 4px;
+  color: #92400e;
+  font-size: 14px;
+}
+
+details {
+  text-align: left;
+  margin-top: 20px;
+}
+
+details summary {
+  color: #dc2626;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  background: #fee2e2;
+  border-radius: 4px;
+  user-select: none;
+}
+
+details summary:hover {
+  background: #fecaca;
+}
+
+details code {
+  display: block;
+  padding: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 12px;
+  overflow-x: auto;
+  color: #666;
+}
+
+@media (max-width: 640px) {
+  .error-container {
+    padding: 32px 24px;
+  }
+
+  .error-container h1 {
+    font-size: 22px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+  }
+
+  .error-actions .btn {
+    min-width: 100%;
+  }
+}
