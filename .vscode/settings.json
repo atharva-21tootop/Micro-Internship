@@ -1,8 +1,0 @@
-{
-  "files.exclude": {
-    "**/.firebase": true,
-    "**/.vscode": true,
-    "**/dist": true,
-    "**/node_modules": true
-  }
-}
