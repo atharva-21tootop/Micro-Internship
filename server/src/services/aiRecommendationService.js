@@ -2,9 +2,9 @@ import { scoreInternshipMatch } from './matchService.js'
 import { z } from 'zod'
 
 const isAiConfigured = () =>
-  Boolean(process.env.AI_API_KEY?.trim())
+  Boolean((process.env.AI_API_KEY || process.env.VITE_AI_API_KEY)?.trim())
 
-const getApiKey = () => process.env.AI_API_KEY?.trim() || ''
+const getApiKey = () => (process.env.AI_API_KEY || process.env.VITE_AI_API_KEY)?.trim() || ''
 
 const aiMatchSchema = z.object({
   score: z.coerce.number().min(0).max(100),
@@ -15,12 +15,12 @@ const aiMatchSchema = z.object({
 const getAiConfig = () => {
   const key = getApiKey()
   const url =
-    process.env.AI_API_URL?.trim() ||
+    (process.env.AI_API_URL || process.env.VITE_AI_API_URL)?.trim() ||
     (key.startsWith('gsk_')
       ? 'https://api.groq.com/openai/v1/chat/completions'
       : 'https://api.openai.com/v1/chat/completions')
   const model =
-    process.env.AI_MODEL?.trim() ||
+    (process.env.AI_MODEL || process.env.VITE_AI_MODEL)?.trim() ||
     (url.includes('groq.com') ? 'llama-3.1-8b-instant' : 'gpt-4o-mini')
   return { key, url, model }
 }

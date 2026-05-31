@@ -7,6 +7,12 @@ const normalizeRole = (role) => {
 }
 
 export const verifyAuth = async (req, res, next) => {
+  // Skip OPTIONS preflight requests (handled by CORS middleware)
+  if (req.method === 'OPTIONS') {
+    next()
+    return
+  }
+
   const header = req.headers.authorization
 
   if (!header?.startsWith('Bearer ')) {

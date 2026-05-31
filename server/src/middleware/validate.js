@@ -1,6 +1,12 @@
 import { ZodError } from 'zod'
 
 export const validate = (schema) => (req, res, next) => {
+  // Skip OPTIONS preflight requests
+  if (req.method === 'OPTIONS') {
+    next()
+    return
+  }
+
   try {
     const parsed = schema.parse({
       body: req.body,
