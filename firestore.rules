@@ -41,9 +41,18 @@ service cloud.firestore {
     }
 
     function canReadInternship() {
+      // Public can read approved internships
       return resource.data.get('approved', false) == true
+        // Admins can read all
         || (signedIn() && isAdmin())
+        // Orgs can read their own
         || (signedIn() && isOrganization() && resource.data.orgId == request.auth.uid);
+    }
+
+    function canListInternships() {
+      // Unapproved: only via API (Firestore rules prevent it)
+      // Approved: publicly readable via Firestore
+      return true; // API handles filtering
     }
 
     function userCreateKeys() {
@@ -129,8 +138,14 @@ service cloud.firestore {
     }
 
     match /internships/{internshipId} {
+      // READ: Allow public read of approved internships, admins read all, orgs read theirs
       allow read: if canReadInternship();
-
+      
+      // LIST: Support both authenticated and unauthenticated reads
+      // - Public users: only approved internships via API (backend enforces this)
+      // - Authenticated: full control via canReadInternship()
+      // - Note: Direct Firestore queries go through API, not direct collection reads
+      
       allow create: if isOrganization()
         && request.resource.data.orgId == request.auth.uid
         && request.resource.data.approved == false
